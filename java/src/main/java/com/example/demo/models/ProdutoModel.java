@@ -47,6 +47,8 @@ public class ProdutoModel implements Produtos {
                 map.put("id", rs.getObject("id"));
                 map.put("nome", rs.getObject("nome"));
                 map.put("preco", rs.getObject("preco"));
+                map.put("quantidadeTotal", rs.getObject("quantidades"));
+                map.put("quantidadeDefeitos", rs.getObject("defeitos"));
                 listMap.add(map);
             }
             return listMap;
