@@ -1,0 +1,22 @@
+<section>
+ 
+  <mat-card class="descricao-produto" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title> {{ produto?.nome }} </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <img mat-card-image src="./../../../assets/img/laptop.jpg" width="800px" alt="Photo of laptop">
+      <div class="informacoes">
+        <p class="preco">R${{ produto?.preco }}</p>
+        <p>Quantidade de defeitos {{ produto?.quantidadeDefeitos }}</p>
+        <p>Quantidade total  {{ produto?.quantidadeTotal }}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-fab extended  (click)="voltar()">
+        <mat-icon>arrow_back_ios</mat-icon>
+        Voltar
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</section>

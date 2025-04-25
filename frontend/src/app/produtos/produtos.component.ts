@@ -51,7 +51,9 @@ export class ProdutosComponent implements OnInit {
   }
 
   redirecionarDetalhes(produto){
-    this.router.navigate(['/produtos/detalhes']);
+    this.router.navigate(['/produtos/detalhes'], {
+      queryParams: { produto: JSON.stringify(produto) }
+    });
   }
 
   aplicarFiltros(): void {

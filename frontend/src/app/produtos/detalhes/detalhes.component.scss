@@ -1,0 +1,37 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px;
+}
+
+.descricao-produto{
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+
+    .texto-exemplo{
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    mat-card-content{
+        display: flex;
+        flex-direction: row;
+        padding:8px;
+        gap: 8px;
+
+        .informacoes{
+            padding: 16px;
+            background-color: rgb(156, 167, 163);
+            .preco{
+                font-size: 48px;
+                
+            }
+            .quantidades{
+                font-size: 24px;
+            }
+        }
+    }
+
+}
