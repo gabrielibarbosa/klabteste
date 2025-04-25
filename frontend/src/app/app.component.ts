@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {HttpserviceModule} from "./modules/httpservice.module";
+import {HttpServiceModule} from "./modules/http-service.module";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpserviceModule],
+  imports: [RouterOutlet, HttpServiceModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

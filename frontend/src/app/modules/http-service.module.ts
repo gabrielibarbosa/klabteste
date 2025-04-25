@@ -22,4 +22,4 @@ class ApiInterceptor implements HttpInterceptor {
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }],
   exports: [HttpClientModule]
 })
-export class HttpserviceModule {}
+export class HttpServiceModule {}
