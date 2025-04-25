@@ -1,0 +1,33 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px;
+}
+.area-filtros{
+    height: 80px;
+
+    mat-card{
+        display: flex;
+     
+        height: 100%;
+
+        .form-full-width{
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+
+            mat-form-field{
+                display: inline-flex;
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+.mat-mdc-row:hover .mat-mdc-cell {
+    background-color: gray;
+    color: black;
+    cursor: pointer;
+  }

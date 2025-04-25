@@ -1,16 +1,34 @@
-import { CommonModule } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { ProdutosService } from "../core/services/produtos.service";
-import { ProdutosComponent } from "./produtos.component";
-import { ReactiveFormsModule } from "@angular/forms";
-import {MatTableModule} from '@angular/material/table';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
-const route = [{component: ProdutosComponent, path: ''}]
+import { ProdutosService } from '../core/services/produtos.service';
+import { MaterialModule } from '../shared/material.module';
+import { ProdutosComponent } from './produtos.component';
+
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ProdutosComponent,
+   
+  }
+];
+
 @NgModule({
-  imports: [HttpClientModule, MatTableModule, ReactiveFormsModule, CommonModule, RouterModule.forChild(route)],
-  declarations: [ProdutosComponent],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterModule.forChild(routes)
+  ],
+  declarations: [
+    ProdutosComponent,
+  ],
   providers: [ProdutosService]
 })
 export class ProdutosModule {}

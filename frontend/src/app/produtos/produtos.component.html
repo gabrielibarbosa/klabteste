@@ -1,33 +1,85 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<section class="area-filtros">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <form class="form-full-width" [formGroup]="form">
+        <mat-form-field  appearance="fill">
+          <mat-label>Nome do produto</mat-label>
+          <input
+            type="text"
+            placeholder="Pesquisar por nome do produto..."
+            matInput
+            formControlName="nome"
+            [matAutocomplete]="auto" />
+      
+          <mat-autocomplete #auto="matAutocomplete">
+          
+          </mat-autocomplete>
+        </mat-form-field>
+      
+        <mat-form-field  appearance="fill">
+          <mat-label>Faixa de valores</mat-label>
+          <mat-select formControlName="filtroPorPrecos" required>
+            <mat-option value="">--</mat-option>
+            <mat-option *ngFor="let item of filtroPorPrecos" [value]="item.value">
+              {{ item.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+        <mat-form-field  appearance="fill">
+          <mat-label>Filtrar por quantidade maior que:</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="quantidadeMaiorQue"
+            placeholder="Ex: 10" />
+          <mat-error *ngIf="form.get('quantidadeMaiorQue')?.hasError('required')">
+            Informe uma quantidade
+          </mat-error>
+        </mat-form-field>
+      </form>      
+    </mat-card-content>
+  </mat-card>
+</section>
+<section>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <table mat-table [dataSource]="listaProdutosFiltrados" class="mat-elevation-z8">
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Nome do Produto </th>
+          <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="quantidadeTotal">
+          <th mat-header-cell *matHeaderCellDef> Quantidade Total </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantidadeTotal}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="quantidadeDefeitos">
+          <th mat-header-cell *matHeaderCellDef> Quantidade de Defeitos </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantidadeDefeitos}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="quantidadeDisponivelVenda">
+          <th mat-header-cell *matHeaderCellDef> Quantidade Disponível para Venda </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantidadeDisponivelVenda}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="preco">
+            <th mat-header-cell *matHeaderCellDef> Preço </th>
+            <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row       
+          (click)="redirecionarDetalhes(row)"
+          *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
 
-   
-    <ng-container matColumnDef="nome">
-      <th mat-header-cell *matHeaderCellDef> Nome do Produto </th>
-      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="quantidadeTotal">
-      <th mat-header-cell *matHeaderCellDef> Quantidade Total </th>
-      <td mat-cell *matCellDef="let element"> {{element.quantidadeTotal}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="quantidadeDefeitos">
-      <th mat-header-cell *matHeaderCellDef> Quantidade de Defeitos </th>
-      <td mat-cell *matCellDef="let element"> {{element.quantidadeDefeitos}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="quantidadeDisponivelVenda">
-      <th mat-header-cell *matHeaderCellDef> Quantidade Disponível para Venda </th>
-      <td mat-cell *matCellDef="let element"> {{element.quantidadeDisponivelVenda}} </td>
-    </ng-container>
+    </mat-card-content>
+  </mat-card>
+ 
+</section>
 
-    <ng-container matColumnDef="preco">
-        <th mat-header-cell *matHeaderCellDef> Preço </th>
-        <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
-      </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
   
