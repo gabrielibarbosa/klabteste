@@ -69,10 +69,28 @@
             <th mat-header-cell *matHeaderCellDef> Preço </th>
             <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
           </ng-container>
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Editar Produto </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-button color="primary" (click)="editarProdutoModal(element)">
+                <mat-icon>add_circle</mat-icon>
+                Editar produto
+              </button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="detalhes">
+            <th mat-header-cell *matHeaderCellDef> Ver mais </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-button color="primary" (click)="redirecionarDetalhes(element)">
+                <mat-icon>visibility</mat-icon>
+                Ver mais
+              </button>
+            </td>
+          </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row       
-          (click)="redirecionarDetalhes(row)"
           *matRowDef="let row; columns: displayedColumns;">
         </tr>
       </table>

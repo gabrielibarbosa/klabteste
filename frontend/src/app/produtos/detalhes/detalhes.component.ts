@@ -73,7 +73,7 @@ export class DetalhesComponent {
   }
 
   openSnackBar() {
-    let durationInSeconds = 600;
+    let durationInSeconds = 5;
 
     this.snackBar.openFromComponent(NotificationComponent, {
       duration: durationInSeconds * 1000,

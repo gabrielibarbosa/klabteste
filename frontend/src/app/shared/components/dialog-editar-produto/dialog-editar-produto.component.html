@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Cadastrar Nova Venda</h2>
+
+<mat-dialog-content>
+  <h3><strong>Quantidade disponível:</strong> {{produto.quantidadeDisponivelVenda}}</h3>
+  <mat-divider></mat-divider>
+
+  <form  [formGroup]="form" class="form-full-width">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Preço:</mat-label>
+      <input matInput type="number" formControlName="preco" />
+      <mat-error *ngIf="form.get('preco')?.hasError('required')">
+        Informe o novo preco do produto!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Quantidade disponível para venda:</mat-label>
+      <input matInput type="number" formControlName="quantidadeDisponivelVenda" />
+      <mat-error *ngIf="form.get('quantidadeDisponivelVenda')?.hasError('required')">
+        Informe a nova quantidade
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Quantidade com defeito:</mat-label>
+        <input matInput type="number" formControlName="quantidadeDefeitos" />
+        <mat-error *ngIf="form.get('quantidadeDefeitos')?.hasError('required')">
+          Informe a nova quantidade
+        </mat-error>
+      </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="form.invalid">Salvar</button>
+</mat-dialog-actions>
