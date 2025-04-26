@@ -33,20 +33,13 @@ public class VendasService {
             Integer quantidadeVendida = (Integer) venda.get("quantidades");
 
             /* Fazendo o map para o que a função de update espera */
-            Integer quantidadeAtual = produtos.getQuantidadeAtual(produtoId);
-            Integer novaQuantidade = quantidadeAtual - quantidadeVendida;
-
-            if (novaQuantidade < 0) {
-                throw new SQLException("Não há quantidade suficiente no estoque para a venda.");
-            }
-
             Map<String, Object> updateProduto = new HashMap<>();
             updateProduto.put("id", produtoId);
-            updateProduto.put("quantidades", novaQuantidade);
+            updateProduto.put("quantidades", quantidadeVendida);
 
            /* Fazendo o update de produto */
             System.out.println("Fazendo update do produto: " + updateProduto);
-            produtos.updateProduct(updateProduto);
+            produtos.updateProduct(produtoId, updateProduto);
 
         } catch (Exception e) {
             System.out.println("Erro ao processar a venda: " + e.getMessage());

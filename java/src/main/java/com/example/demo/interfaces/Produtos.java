@@ -1,5 +1,7 @@
 package com.example.demo.interfaces;
 
+import org.springframework.web.bind.annotation.PathVariable;
+
 import java.sql.SQLException;
 import java.util.Map;
 
@@ -9,8 +11,6 @@ public interface Produtos {
     public void insertProduct(Map<String, Object> product) throws SQLException;
 
     public Object getAllProducts() throws SQLException ;
-
-    public Integer getQuantidadeAtual(Integer produtoId) throws SQLException;
     
-    public void updateProduct(Map<String, Object> product) throws SQLException;
+    public void updateProduct(Integer id, Map<String, Object> product) throws SQLException;
 }

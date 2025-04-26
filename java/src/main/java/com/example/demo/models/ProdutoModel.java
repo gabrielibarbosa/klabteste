@@ -4,6 +4,7 @@ import com.example.demo.interfaces.Produtos;
 import com.example.demo.services.NativeScriptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -63,45 +64,9 @@ public class ProdutoModel implements Produtos {
         }
     }
 
-    // Funcao para retornar a quantidade atual disponivel de um produto
-    public Integer getQuantidadeAtual(Integer produtoId) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet rs = null;
 
+    public void updateProduct(@PathVariable Integer id, Map<String, Object> product) throws SQLException {
         try {
-            String sql = "SELECT quantidades FROM produtos WHERE id = ?";
-
-            connection = nativeScriptService.getConectionDb();
-            preparedStatement = nativeScriptService.getPreparedStatementDb(sql, connection);
-
-            preparedStatement.setInt(1, produtoId);
-
-            rs = preparedStatement.executeQuery();
-
-            if (rs.next()) {
-                return rs.getInt("quantidades");
-            } else {
-                throw new SQLException("Produto não encontrado com id: " + produtoId);
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro ao consultar quantidade atual do produto: " + e.getMessage());
-            e.printStackTrace();
-            throw new SQLException("Erro ao consultar quantidade atual do produto.", e);
-        } finally {
-            if (rs != null) rs.close();
-            if (preparedStatement != null) preparedStatement.close();
-            if (connection != null) connection.close();
-        }
-    }
-
-
-    public void updateProduct(Map<String, Object> product) throws SQLException {
-        try {
-            if (!product.containsKey("id")) {
-                throw new IllegalArgumentException("ID do produto é obrigatório para atualização.");
-            }
-
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE produtos SET ");
 
@@ -113,15 +78,15 @@ public class ProdutoModel implements Produtos {
             if (product.containsKey("preco")) {
                 updates.add("preco = " + product.get("preco"));
             }
-            if (product.containsKey("quantidades")) {
-                updates.add("quantidades = " + product.get("quantidades"));
+            if (product.containsKey("quantidadeDisponivelVenda")) {
+                updates.add("quantidades = " + product.get("quantidadeDisponivelVenda"));
             }
-            if (product.containsKey("defeitos")) {
-                updates.add("defeitos = '" + product.get("defeitos") + "'");
+            if (product.containsKey("quantidadeDefeitos")) {
+                updates.add("defeitos = '" + product.get("quantidadeDefeitos") + "'");
             }
 
             sql.append(String.join(", ", updates));
-            sql.append(" WHERE id = ").append(product.get("id"));
+            sql.append(" WHERE id = ").append(id);
 
             System.out.println("SQL para atualizar produto: " + sql);
             nativeScriptService.execute(sql.toString());
