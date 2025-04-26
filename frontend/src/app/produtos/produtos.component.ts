@@ -65,7 +65,7 @@ export class ProdutosComponent implements OnInit {
       const precoMaximo = filtroPorPrecos;
       const faixaPrecos = !precoMaximo || produto.preco <= precoMaximo;
   
-      const filtroPorQuantidade = !quantidadeMaiorQue || produto.quantidadeTotal > +quantidadeMaiorQue;  
+      const filtroPorQuantidade = !quantidadeMaiorQue || produto.quantidadeDisponivelVenda > +quantidadeMaiorQue;  
       return nomeFiltro && faixaPrecos && filtroPorQuantidade;
     });
   }

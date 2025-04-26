@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Cadastrar Nova Venda</h2>
+
+<mat-dialog-content>
+  <h3><strong>Quantidade disponível:</strong> {{produto.quantidadeTotal}}</h3>
+  <mat-divider></mat-divider>
+
+  <form  [formGroup]="form" class="form-full-width">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nome completo:</mat-label>
+      <input matInput type="text" formControlName="nome" />
+      <mat-error *ngIf="form.get('nome')?.hasError('required')">
+        Informe o nome do vendedor!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Quantidade desejada:</mat-label>
+      <input matInput type="number" formControlName="quantidade" [max]="produto?.quantidadeTotal" placeholder="Ex: 10" />
+      <mat-error *ngIf="form.get('quantidade')?.hasError('required')">
+        Informe uma quantidade
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="form.invalid">Salvar</button>
+</mat-dialog-actions>

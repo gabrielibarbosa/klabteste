@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; }
+//Não é uma boa prática de desenvolvimento, porém para ser mais breve fiz dessa forma
+mat-card{
+    display: flex;
+    padding:8px;
+    gap:8px;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+    background-color: gray;
+    color: black;
+    cursor: pointer;
+  }

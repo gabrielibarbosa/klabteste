@@ -9,6 +9,7 @@ import { AsyncPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule} from '@angular/material/dialog';
 
 const materialComponents = [
     MatTableModule,
@@ -19,7 +20,8 @@ const materialComponents = [
     MatAutocompleteModule,
     MatIconModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
 ]
 @NgModule({
   imports: [

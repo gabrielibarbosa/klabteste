@@ -1,0 +1,12 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    padding: 8px;
+    gap: 8px;
+}
+
+mat-form-field{
+    display: flex;
+    padding: 8px;
+}
