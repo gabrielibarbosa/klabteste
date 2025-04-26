@@ -41,9 +41,9 @@ public class VendasModel implements Vendas {
                 Map<String,Object> map = new HashMap<>();
                 map.put("id", rs.getObject("id"));
                 map.put("comprador", rs.getObject("comprador"));
-                map.put("produto_id", rs.getObject("produto_id"));
+                map.put("produtoId", rs.getObject("produto_id"));
                 map.put("quantidades", rs.getObject("quantidades"));
-                map.put("total_venda", rs.getObject("total_venda"));
+                map.put("totalVenda", rs.getObject("total_venda"));
                 listMap.add(map);
             }
             return listMap;
