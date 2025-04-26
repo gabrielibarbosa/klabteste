@@ -47,7 +47,7 @@ public class ProdutoModel implements Produtos {
                 map.put("id", rs.getObject("id"));
                 map.put("nome", rs.getObject("nome"));
                 map.put("preco", rs.getObject("preco"));
-                map.put("quantidadeTotal", rs.getObject("quantidades"));
+                map.put("quantidadeDisponivelVenda", rs.getObject("quantidades"));
                 map.put("quantidadeDefeitos", rs.getObject("defeitos"));
                 listMap.add(map);
             }
@@ -62,6 +62,76 @@ public class ProdutoModel implements Produtos {
             preparedStatement.close();
         }
     }
+
+    // Funcao para retornar a quantidade atual disponivel de um produto
+    public Integer getQuantidadeAtual(Integer produtoId) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT quantidades FROM produtos WHERE id = ?";
+
+            connection = nativeScriptService.getConectionDb();
+            preparedStatement = nativeScriptService.getPreparedStatementDb(sql, connection);
+
+            preparedStatement.setInt(1, produtoId);
+
+            rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("quantidades");
+            } else {
+                throw new SQLException("Produto não encontrado com id: " + produtoId);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao consultar quantidade atual do produto: " + e.getMessage());
+            e.printStackTrace();
+            throw new SQLException("Erro ao consultar quantidade atual do produto.", e);
+        } finally {
+            if (rs != null) rs.close();
+            if (preparedStatement != null) preparedStatement.close();
+            if (connection != null) connection.close();
+        }
+    }
+
+
+    public void updateProduct(Map<String, Object> product) throws SQLException {
+        try {
+            if (!product.containsKey("id")) {
+                throw new IllegalArgumentException("ID do produto é obrigatório para atualização.");
+            }
+
+            StringBuilder sql = new StringBuilder();
+            sql.append("UPDATE produtos SET ");
+
+            List<String> updates = new ArrayList<>();
+
+            if (product.containsKey("nome")) {
+                updates.add("nome = '" + product.get("nome") + "'");
+            }
+            if (product.containsKey("preco")) {
+                updates.add("preco = " + product.get("preco"));
+            }
+            if (product.containsKey("quantidades")) {
+                updates.add("quantidades = " + product.get("quantidades"));
+            }
+            if (product.containsKey("defeitos")) {
+                updates.add("defeitos = '" + product.get("defeitos") + "'");
+            }
+
+            sql.append(String.join(", ", updates));
+            sql.append(" WHERE id = ").append(product.get("id"));
+
+            System.out.println("SQL para atualizar produto: " + sql);
+            nativeScriptService.execute(sql.toString());
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar produto: " + e.getMessage());
+            e.printStackTrace();
+            throw new SQLException("Erro ao atualizar produto no banco de dados.", e.getMessage());
+        }
+    }
+
 
     public void insertProduct(Map<String, Object> product) throws SQLException {
         try {

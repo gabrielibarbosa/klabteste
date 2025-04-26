@@ -9,4 +9,8 @@ public interface Produtos {
     public void insertProduct(Map<String, Object> product) throws SQLException;
 
     public Object getAllProducts() throws SQLException ;
+
+    public Integer getQuantidadeAtual(Integer produtoId) throws SQLException;
+    
+    public void updateProduct(Map<String, Object> product) throws SQLException;
 }
