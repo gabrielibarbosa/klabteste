@@ -1,0 +1,71 @@
+<section class="area-filtros">
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <form class="form-full-width" [formGroup]="form">
+          <mat-form-field  appearance="fill">
+            <mat-label>Nome do produto</mat-label>
+            <input
+              type="text"
+              placeholder="Pesquisar por comprador..."
+              matInput
+              formControlName="comprador"
+              [matAutocomplete]="auto" />
+        
+            <mat-autocomplete #auto="matAutocomplete">
+            
+            </mat-autocomplete>
+          </mat-form-field>
+        
+          <mat-form-field  appearance="fill">
+            <mat-label>Faixa de valores</mat-label>
+            <mat-select formControlName="totalVenda" required>
+              <mat-option value="">--</mat-option>
+              <mat-option *ngFor="let item of filtroPorTotalVenda" [value]="item.value">
+                {{ item.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>      
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+<section class="area-table">
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <table mat-table [dataSource]="listaVendas" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID da Venda</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="comprador">
+            <th mat-header-cell *matHeaderCellDef> Comprador </th>
+            <td mat-cell *matCellDef="let element"> {{element.comprador }} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="quantidades">
+            <th mat-header-cell *matHeaderCellDef> Quantidade comprada </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantidades}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="produtoId">
+            <th mat-header-cell *matHeaderCellDef> ID do Produto </th>
+            <td mat-cell *matCellDef="let element"> {{element.produtoId}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="totalVenda">
+              <th mat-header-cell *matHeaderCellDef> Total Venda </th>
+              <td mat-cell *matCellDef="let element"> R${{element.totalVenda}} </td>
+            </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row       
+            *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+  
+      </mat-card-content>
+    </mat-card>
+   
+  </section>

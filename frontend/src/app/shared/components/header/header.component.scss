@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 56px;
+  font-weight: 400;
+  background-color:#608DF0
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap:16px;
+}
+
+.menu li a {
+  height: 32px;
+  font-size: 16px;
+  text-decoration: none;
+  color:#1C1DF0;
+  padding: 8px;
+}
+
+.menu li a.active {
+  font-size: 18px;
+  font-weight: 700;
+  color:  #1C1DF0;
+}
+
+.menu li a:hover {
+  font-weight: 600;
+  background-color:  #1C1DF050;
+}
+
+.menu li a.active:hover {
+  background-color: #1C1DF050;
+}

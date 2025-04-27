@@ -5,11 +5,14 @@
     padding: 8px;
     gap: 8px;
 }
-
+.nome-produto{
+    color: #722674;
+    font-size: 24px;
+}
 
 .descricao-produto{
     display: flex;
-    gap: 8px;
+    gap: 30px;
     padding: 16px;
 
     .texto-exemplo{
@@ -27,13 +30,17 @@
     .right-content{
         display: inline-flex;
         flex-direction: column;
-        padding: 16px;
+        justify-items: end;
+        align-items: end;
+        padding-left: 30px;
+        min-width: 300px;
         .preco{
-            font-size: 48px;
+            font-size: 56px;
+            padding-bottom: 24px;
             
         }
         .quantidades{
-            font-size: 24px;
+            font-size: 32px;
         }
     }
     mat-card-content{
