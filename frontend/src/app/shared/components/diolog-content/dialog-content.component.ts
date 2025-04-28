@@ -18,6 +18,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class DialogContentComponent implements OnInit {
   form!: FormGroup;
   produto: any;
+  valorTotal: number;
 
   constructor(
     private fb: FormBuilder,
@@ -32,6 +33,14 @@ export class DialogContentComponent implements OnInit {
       nome: ['', Validators.required],
       quantidade: ['', Validators.required],
     });
+    this.form.valueChanges.subscribe(() => this.totalCompra());
+
+  }
+
+  totalCompra(){
+    const { quantidade } = this.form.value;
+    return this.valorTotal = quantidade * this.produto.preco;
+    
   }
 
   onSave(): void {

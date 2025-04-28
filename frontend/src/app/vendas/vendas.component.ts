@@ -13,7 +13,7 @@ export class VendasComponent {
     'id',
     'comprador',
     'quantidades',
-    'produtoId',
+    'descricaoProduto',
     'totalVenda',
   ];
   listaVendas: Array<IVendas> = [];

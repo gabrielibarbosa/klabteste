@@ -2,6 +2,7 @@
 
 <mat-dialog-content>
   <h3><strong>Quantidade disponível:</strong> {{produto.quantidadeTotal}}</h3>
+  <h3><strong>Preço unitário:</strong> {{produto.preco | currency:'BRL':'symbol':'1.2-2' }}</h3>
   <mat-divider></mat-divider>
 
   <form  [formGroup]="form" class="form-full-width">
@@ -21,9 +22,15 @@
       </mat-error>
     </mat-form-field>
   </form>
+
+  <div class="preco-total">
+    <h3 *ngIf="valorTotal"><strong>Total compra:</strong> {{valorTotal | currency:'BRL':'symbol':'1.2-2' }}</h3>
+  </div>
+
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
+
   <button mat-button (click)="onCancel()">Cancelar</button>
   <button mat-raised-button color="primary" (click)="onSave()" [disabled]="form.invalid">Salvar</button>
 </mat-dialog-actions>

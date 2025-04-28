@@ -10,3 +10,11 @@ mat-form-field{
     display: flex;
     padding: 8px;
 }
+
+.preco-total{
+    display: inline-flex;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+    padding: 8px;
+}

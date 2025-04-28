@@ -49,14 +49,14 @@
             <td mat-cell *matCellDef="let element"> {{element.quantidades}} </td>
           </ng-container>
         
-          <ng-container matColumnDef="produtoId">
-            <th mat-header-cell *matHeaderCellDef> ID do Produto </th>
-            <td mat-cell *matCellDef="let element"> {{element.produtoId}} </td>
+          <ng-container matColumnDef="descricaoProduto">
+            <th mat-header-cell *matHeaderCellDef> Produto </th>
+            <td mat-cell *matCellDef="let element"> {{element.descricaoProduto}} </td>
           </ng-container>
       
           <ng-container matColumnDef="totalVenda">
               <th mat-header-cell *matHeaderCellDef> Total Venda </th>
-              <td mat-cell *matCellDef="let element"> R${{element.totalVenda}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.totalVenda | currency:'BRL':'symbol':'1.2-2'}} </td>
             </ng-container>
         
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
