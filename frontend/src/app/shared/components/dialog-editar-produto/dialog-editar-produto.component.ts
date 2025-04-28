@@ -31,7 +31,7 @@ export class DialogEditarProdutoComponent {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      preco: [''],
+      preco: ['', Validators.min(this.produto.preco)],
       quantidadeDisponivelVenda: [''],
       quantidadeDefeitos:  [''],
     });
