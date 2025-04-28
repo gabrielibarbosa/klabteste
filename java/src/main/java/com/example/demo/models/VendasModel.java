@@ -25,23 +25,23 @@ public class VendasModel implements Vendas {
         PreparedStatement preparedStatement = null;
 
         try {
+           
             List<Map<String, Object>> listMap = new ArrayList<>();
-
-            //Construção da string SQL
             StringBuilder sql = new StringBuilder();
-            sql.append("SELECT * FROM vendas;");
+            sql.append("SELECT v.id, v.comprador, v.produto_id, v.quantidades, v.total_venda, p.nome ");
+            sql.append("FROM vendas v ");
+            sql.append("JOIN produtos p ON v.produto_id = p.id;");
 
-            //Abertura da conexão com o banco e abertura da PreparedStatement para comunicação
             connection = nativeScriptService.getConectionDb();
             preparedStatement = nativeScriptService.getPreparedStatementDb(sql.toString(), connection);
 
-            //Conversão e retorno das informações
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
-                Map<String,Object> map = new HashMap<>();
+            while (rs.next()) {
+                Map<String, Object> map = new HashMap<>();
                 map.put("id", rs.getObject("id"));
                 map.put("comprador", rs.getObject("comprador"));
                 map.put("produtoId", rs.getObject("produto_id"));
+                map.put("descricaoProduto", rs.getObject("nome")); 
                 map.put("quantidades", rs.getObject("quantidades"));
                 map.put("totalVenda", rs.getObject("total_venda"));
                 listMap.add(map);
